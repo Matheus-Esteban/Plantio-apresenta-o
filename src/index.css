@@ -1,18 +1,39 @@
 /* src/index.css */
 
 /* ---------------------------------------------------------------------- */
-/* --- RESET BÁSICO E FONTES --- */
+/* --- RESET BÁSICO, VARIÁVEIS E FONTES --- */
 /* ---------------------------------------------------------------------- */
+:root {
+  /* Cores da Marca Plant.io */
+  --color-primary: #8BC34A; /* Verde Lima Principal */
+  --color-primary-dark: #7CB342; /* Verde Lima Hover */
+  --color-secondary: #4CAF50; /* Verde Secundário (Crédito de Carbono) */
+  
+  /* Cores Neutras */
+  --color-dark: #1F2937; /* Azul Petróleo / Quase Preto */
+  --color-text: #4B5563; /* Texto Principal Escuro */
+  --color-light-text: #E0E0E0; /* Texto Claro */
+  --color-background-light: #f9f9f9; /* Fundo Claro */
+  --color-background-white: white; 
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+    width: 100%;
+    overflow-x: hidden; 
+    scroll-behavior: smooth;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
-  color: #333;
+  color: var(--color-text);
+  overflow-x: hidden; 
 }
 
 /* ---------------------------------------------------------------------- */
@@ -28,21 +49,21 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8BC34A; /* VERDE LIMA da Plant.io */
+  background: var(--color-primary); 
   border-radius: 10px;
   border: 3px solid #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7CB342;
+  background: var(--color-primary-dark);
 }
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DE LAYOUT PRINCIPAL (DO App.jsx) --- */
+/* --- ESTILOS GERAIS DE LAYOUT E TIPOGRAFIA --- */
 /* ---------------------------------------------------------------------- */
-
 .app-container {
   min-height: 100vh;
+  width: 100%; 
   display: flex;
   flex-direction: column;
 }
@@ -51,28 +72,76 @@ body {
   flex-grow: 1;
 }
 
-/* ---------------------------------------------------------------------- */
-/* --- ESTILOS GERAIS DE CONTEÚDO --- */
-/* ---------------------------------------------------------------------- */
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1F2937; /* Azul Petróleo */
+  color: var(--color-dark);
   margin-bottom: 0.5rem;
 }
 .section-subtitle {
   font-size: 1.1rem;
-  color: #4B5563;
+  color: var(--color-text);
   margin-bottom: 3rem;
 }
-/* [AJUSTE RESPONSIVO GERAL] Reduz tamanho da fonte em telas pequenas */
+
 @media (max-width: 600px) {
     .section-title {
         font-size: 2rem;
     }
     .section-subtitle {
         font-size: 1rem;
+        margin-bottom: 2rem;
     }
+}
+
+/* ---------------------------------------------------------------------- */
+/* --- ESTILOS DO BOTÃO --- */
+/* ---------------------------------------------------------------------- */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+.btn-primary {
+    background-color: var(--color-primary); 
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); 
+    transform: scale(1.08); 
+}
+
+/* Estilo Outline Branco */
+.btn-secondary,
+.contact-cta-container .btn-secondary,
+.btn-outline-light {
+    color: white !important; 
+    border: 2px solid white !important; 
+    background-color: transparent !important; 
+    box-shadow: none !important; 
+}
+
+.btn-secondary:hover,
+.contact-cta-container .btn-secondary:hover,
+.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important; 
+    color: white !important; 
+    transform: scale(1.08); 
+    border-color: white !important;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -80,11 +149,13 @@ body {
 /* ---------------------------------------------------------------------- */
 
 .header-container {
-  background-color: white;
+  background-color: var(--color-background-white);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  min-height: 80px; 
+  overflow: visible; 
 }
 
 .header-content {
@@ -92,42 +163,137 @@ body {
   margin: 0 auto; 
   padding: 1rem 1.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* Desktop: Logo | Nav | CTA */
+  justify-content: flex-start; 
+  align-items: center; 
+  height: 100%;
+}
+
+.header-logo-link {
+    display: flex;
+    align-items: center;
+    z-index: 1002; 
 }
 
 .header-logo-img {
   height: 55px; 
   width: auto;
-  display: block;
 }
 
 .header-nav {
   display: flex;
+  align-items: center; 
+  /* CRUCIAL: PUSH o nav e o CTA para a direita */
+  margin-left: auto; 
   gap: 2rem; 
 }
 
 .nav-link {
-  color: #4B5563; 
+  color: var(--color-text); 
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
+  padding: 5px 0; 
 }
 
 .nav-link:hover {
-  color: #8BC34A; /* Verde Lima */
+  color: var(--color-primary); 
 }
 
-/* --- RESPONSIVIDADE DO HEADER --- */
-@media (max-width: 768px) {
-  .header-nav,
-  .header-cta {
-    display: none;
-  }
+.menu-toggle-button {
+  display: none; 
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--color-dark);
+  cursor: pointer;
+  z-index: 1001; 
+  padding: 0;
+  line-height: 1; 
+  position: relative; 
+  /* CORREÇÃO: Remove fundo de emoji/outline */
+  font-family: sans-serif; 
+  outline: none !important;
 }
+
+.header-cta.desktop-cta {
+    display: flex; 
+    align-items: center;
+    margin-left: 2rem; 
+}
+.header-cta.mobile-cta {
+    display: none;
+}
+
+/* --- RESPONSIVIDADE DO HEADER (Mobile) --- */
+@media (max-width: 768px) {
+    .header-content {
+        /* Garante espaçamento entre logo e ícone */
+        padding: 0.75rem 1rem;
+        justify-content: space-between; 
+    }
+    
+    .header-nav, 
+    .header-cta.desktop-cta { 
+        display: none;
+    }
+
+    .menu-toggle-button {
+        display: block; 
+        font-size: 2.2rem; /* Aumenta o tamanho do toque */
+        margin-right: 0.5rem;
+    }
+
+    .header-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 50vw; 
+        height: 100vh;
+        background-color: var(--color-dark); 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transform: translateX(100%); 
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        display: flex; 
+        overflow-y: auto; 
+    }
+
+    .header-nav.is-open {
+        transform: translateX(0); 
+    }
+
+    /* ESTILO DO ÍCONE 'X' (FECHAR) */
+    .menu-toggle-button[aria-expanded="true"] {
+        color: white; 
+        /* Fixo e alinhado ao canto superior direito */
+        position: fixed; 
+        top: 1rem; 
+        right: 1rem; 
+        z-index: 1003; 
+    }
+
+    /* ESTILO DOS LINKS NO MENU ABERTO */
+   .nav-link {
+        font-size: 1.6rem; 
+        font-weight: 600;
+        color: white; 
+        /* CRUCIAL: Zera qualquer sombra ou contorno indesejado */
+        text-shadow: none !important; 
+    }
+    
+    .header-cta.mobile-cta {
+        display: block; 
+        margin-top: 1rem;
+    }
+}
+
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO CARROSSEL HERO (Seção de Destaque) --- */
+/* --- ESTILOS DO CARROSSEL HERO --- */
 /* ---------------------------------------------------------------------- */
 
 .hero-section {
@@ -142,10 +308,11 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden; 
 }
 
 .carousel-slide {
-  width: 100%;
+  width: 100%; 
   height: 100%;
   position: absolute;
   top: 0;
@@ -189,50 +356,109 @@ body {
 .hero-title {
   color: white; 
   font-size: 3.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.7), 0 0 4px rgba(0, 0, 0, 0.7); /* Contraste Reforçado */
   margin-bottom: 1rem;
 }
 
 .hero-subtitle {
-  color: #E0E0E0; 
+  color: var(--color-light-text); 
   font-size: 1.4rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.6), 0 0 3px rgba(0, 0, 0, 0.6); /* Contraste Reforçado */
   margin-bottom: 0; 
 }
 
-.hero-ctas {
+.cta-buttons-container {
     margin-top: 2.5rem;
     display: flex;
     justify-content: center;
-    /* [AJUSTE FINAL] Espaçamento aumentado para 2rem */
     gap: 2rem; 
 }
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.control-button {
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.control-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.indicator-dot.active {
+    background: var(--color-primary);
+    transform: scale(1.2);
+}
+
 
 /* --- RESPONSIVIDADE HERO --- */
 @media (max-width: 600px) {
     .hero-section {
-        height: 70vh; 
+        height: 85vh; 
     }
     .hero-title {
         font-size: 2rem; 
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.8);
     }
     .hero-subtitle {
         font-size: 1.1rem; 
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.8);
     }
-    .hero-ctas {
+    .cta-buttons-container {
         flex-direction: column; 
         align-items: center;
         gap: 0.75rem;
         margin-top: 2rem;
     }
-    .hero-ctas .btn {
-        width: 80%;
+    .cta-buttons-container .btn {
+        width: 85%;
+        max-width: 300px;
+    }
+    
+    .carousel-controls {
+        display: none; 
     }
 }
 
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO PRODUTO EM FOCO (Tema: Fundo Milho) --- */
+/* --- ESTILOS DO PRODUTO EM FOCO --- */
 /* ---------------------------------------------------------------------- */
 
 .product-focus-section {
@@ -240,7 +466,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #1F2937; 
+  background-color: var(--color-dark); 
   background-blend-mode: multiply; 
   color: white; 
   margin-top: -1px; 
@@ -262,8 +488,12 @@ body {
 }
 
 .product-focus-text .text-highlight {
-    color: #8BC34A; 
+    color: var(--color-primary); 
     font-weight: 700; 
+}
+
+.focus-features strong {
+    font-weight: 700;
 }
 
 .product-focus-image-grid {
@@ -282,35 +512,43 @@ body {
   transition: transform 0.3s ease-in-out;
 }
 
-.product-focus-image:hover {
-  transform: translateY(-5px);
-}
-
 .focus-title {
   color: white; 
   margin-bottom: 1.5rem;
 }
 
+.focus-features {
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
 .focus-features li {
-    color: #E0E0E0;
+    color: var(--color-light-text);
     list-style: none; 
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     padding-left: 0;
     text-align: left; 
+    line-height: 1.3;
 }
 .focus-features li::before {
   content: '✓'; 
-  color: #8BC34A; 
+  color: var(--color-primary); 
   font-weight: bold;
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
 }
 .focus-paragraph {
-    color: #E0E0E0;
-    margin-bottom: 1rem;
+    color: var(--color-light-text);
+    margin-bottom: 1.5rem;
+}
+.focus-cta-action {
+    margin-top: 2rem;
 }
 
 /* --- RESPONSIVIDADE DO FOCO DO PRODUTO --- */
 @media (max-width: 900px) {
+    .product-focus-section {
+        padding: 4rem 1.5rem; 
+    }
   .product-focus-content {
     flex-direction: column;
     text-align: center;
@@ -328,8 +566,10 @@ body {
     padding-top: 0; 
   }
   .focus-features li {
-    text-align: center; 
-    padding-left: 1rem;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media (max-width: 500px) { 
@@ -339,14 +579,14 @@ body {
 }
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO SEPARADOR DE TRANSIÇÃO (UVA) --- */
+/* --- ESTILOS DO SEPARADOR DE TRANSIÇÃO --- */
 /* ---------------------------------------------------------------------- */
 
 .transition-separator {
   margin-top: -1px; 
   height: 50px; 
   padding: 0; 
-  background-color: white; 
+  background-color: var(--color-background-white); 
   overflow: hidden; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); 
   background-image: url('/UVA.png'); 
@@ -357,12 +597,12 @@ body {
 
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DA SEÇÃO DE SERVIÇOS (Tema: Branco) --- */
+/* --- ESTILOS DA SEÇÃO DE SERVIÇOS --- */
 /* ---------------------------------------------------------------------- */
 .services-section {
   margin-top: -1px; 
   padding: 4rem 1.5rem;
-  background-color: white;
+  background-color: var(--color-background-white);
   text-align: center;
 }
 
@@ -382,16 +622,11 @@ body {
 .service-card {
   flex: 0 0 calc(33.333% - 1.333rem); 
   max-width: 300px; 
-  background-color: white;
+  background-color: var(--color-background-white);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .card-image-container {
@@ -408,20 +643,16 @@ body {
     object-fit: contain;
 }
 
-.card-icon {
-  display: none; 
-}
-
 .card-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1F2937;
+  color: var(--color-dark);
   margin-bottom: 0.75rem;
 }
 
 .card-description {
   font-size: 1rem;
-  color: #6B7280;
+  color: var(--color-text);
 }
 
 .services-title-with-logo {
@@ -439,7 +670,7 @@ body {
 }
 
 
-/* --- RESPONSIVIDADE ADICIONAL PARA SERVIÇOS --- */
+/* --- RESPONSIVIDADE PARA SERVIÇOS --- */
 @media (max-width: 900px) {
   .service-card {
     flex: 0 0 calc(50% - 1rem); 
@@ -447,12 +678,9 @@ body {
 }
 
 @media (max-width: 600px) {
-    .section-title {
-        font-size: 2rem; 
-        padding: 0 0.5rem; 
-        white-space: normal; 
+    .services-section {
+        padding: 3rem 1.5rem; 
     }
-
     .services-title-with-logo {
         white-space: normal; 
         justify-content: center;
@@ -472,12 +700,12 @@ body {
 
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO SOBRE NÓS / PRODUTO (Tema: Fundo Claro) --- */
+/* --- ESTILOS DO SOBRE NÓS / PRODUTO --- */
 /* ---------------------------------------------------------------------- */
 
 .about-section {
     padding: 5rem 1.5rem;
-    background-color: #f9f9f9; 
+    background-color: var(--color-background-light); 
     max-width: 100%;
 }
 
@@ -496,17 +724,15 @@ body {
 .about-card {
     flex: 1;
     padding: 2rem;
-    background-color: white;
+    background-color: var(--color-background-white);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     text-align: left;
-    /* [AJUSTE CONTRASTE] Força o texto escuro para legibilidade */
-    color: #1F2937; 
+    color: var(--color-dark); 
 }
 
-/* [AJUSTE CONTRASTE] Destaques em Verde mais escuro para aparecer sobre o branco */
 .about-card .about-highlight {
-    color: #4CAF50; 
+    color: var(--color-secondary); 
     font-weight: 700; 
 }
 
@@ -518,15 +744,14 @@ body {
 .about-card .card-title {
     font-size: 1.75rem;
     font-weight: 700;
-    color: #1F2937;
+    color: var(--color-dark);
     margin-bottom: 1rem;
-    /* [AJUSTE CONTRASTE] Borda mais espessa e cor sólida */
-    border-bottom: 3px solid #7CB342;
+    border-bottom: 3px solid var(--color-primary-dark);
     padding-bottom: 0.5rem;
 }
 
 .about-card p {
-    color: #1F2937; /* Garante que o texto do parágrafo seja escuro */
+    color: var(--color-dark); 
 }
 
 .feature-list {
@@ -537,7 +762,7 @@ body {
 
 .feature-list li::before {
     content: '→';
-    color: #1F2937;
+    color: var(--color-dark);
     font-weight: bold;
     margin-right: 0.5rem;
 }
@@ -545,8 +770,7 @@ body {
 .highlight-box {
     margin-top: 1.5rem;
     padding: 1.5rem;
-    /* [AJUSTE CONTRASTE] Fundo Verde Escuro para alto contraste com texto branco */
-    background-color: #4CAF50; 
+    background-color: var(--color-secondary); 
     color: white;
     border-radius: 6px;
 }
@@ -561,14 +785,18 @@ body {
 
 /* Responsividade do About Us */
 @media (max-width: 768px) {
+    .about-section {
+        padding: 3rem 1.5rem;
+    }
     .about-columns {
         flex-direction: column;
+        gap: 1.5rem;
     }
 }
 
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO FORMULÁRIO DE CONTATO (Tema: Fundo de Imagem CHA) --- */
+/* --- ESTILOS DO FORMULÁRIO DE CONTATO --- */
 /* ---------------------------------------------------------------------- */
 
 .contact-section {
@@ -616,13 +844,13 @@ body {
 
 .investor-cta {
     padding: 1.5rem;
-    border-left: 4px solid #8BC34A; 
+    border-left: 4px solid var(--color-primary); 
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
 }
 
 .investor-cta h3 {
-    color: #8BC34A;
+    color: var(--color-primary);
     margin-bottom: 0.5rem;
 }
 
@@ -654,19 +882,35 @@ body {
     color: #9CA3AF;
 }
 
+.contact-separator {
+    display: none;
+}
 
+
+/* --- RESPONSIVIDADE DO CONTATO --- */
 @media (max-width: 900px) {
     .contact-content {
         flex-direction: column;
+        gap: 2rem;
+    }
+    .contact-section {
+        padding: 3rem 1.5rem;
     }
     .contact-info {
         text-align: center;
+    }
+    .contact-separator {
+        display: block;
+        width: 100px;
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin: 2rem auto;
     }
 }
 
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DE REVELAÇÃO (ScrollReveal.jsx) --- */
+/* --- ESTILOS DE REVELAÇÃO --- */
 /* ---------------------------------------------------------------------- */
 
 .scroll-reveal-container {
@@ -682,73 +926,12 @@ body {
 
 
 /* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO BOTÃO (Com cores da marca) --- */
-/* ---------------------------------------------------------------------- */
-
-/* Estilos de base */
-.btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: none;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn:hover {
-    /* [AJUSTE GERAL] Diminui o zoom para ser mais sutil */
-    transform: scale(1.03);
-}
-
-/* Botão Primário (Verde Lima) - Com Sombra para Destaque Principal */
-.btn-primary {
-    background-color: #8BC34A; 
-    color: white;
-    /* Adiciona Sombra para Profundidade */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: #7CB342;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); 
-    transform: scale(1.08); /* Mais zoom no primário */
-}
-
-/* ---------------------------------------------------------------------- */
-/* --- SOBRESCRITA: Botão Secundário (Outline Branco para Hero/Contact) --- */
-/* ---------------------------------------------------------------------- */
-
-/* [ATENÇÃO]: Estas regras forçam o estilo GHOST BRANCO, eliminando a cor roxa/verde
-   que estava causando o conflito no Hero Banner. */
-.btn-secondary,
-.contact-cta-container .btn-secondary,
-.btn-outline-light {
-    color: white !important; 
-    border: 2px solid white !important; 
-    background-color: transparent !important; 
-    box-shadow: none !important; 
-}
-
-/* Hover para o estilo Outline Branco */
-.btn-secondary:hover,
-.contact-cta-container .btn-secondary:hover,
-.btn-outline-light:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important; 
-    color: white !important; 
-    transform: scale(1.08); 
-    border-color: white !important;
-}
-
-/* ---------------------------------------------------------------------- */
-/* --- ESTILOS DO FOOTER (Fundo Branco, Texto Azul) --- */
+/* --- ESTILOS DO FOOTER --- */
 /* ---------------------------------------------------------------------- */
 
 .footer-container {
-    background-color: white; 
-    color: #1F2937; 
+    background-color: var(--color-background-white); 
+    color: var(--color-dark); 
     padding: 3rem 1.5rem 0; 
     border-top: 1px solid #E0E0E0; 
 }
@@ -756,16 +939,16 @@ body {
 .footer-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 3rem;
+    grid-template-columns: 1.5fr repeat(3, 1fr); 
+    gap: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid #E0E0E0; 
     text-align: left; 
+    display: grid;
 }
 
 .footer-logo-col {
-    text-align: center; 
+    text-align: left; 
 }
 
 .footer-logo-img {
@@ -776,13 +959,13 @@ body {
 
 .footer-tagline {
     font-size: 0.9rem;
-    color: #4B5563; 
+    color: var(--color-text); 
 }
 
 .footer-heading {
     font-size: 1.25rem;
     font-weight: 700; 
-    color: #1F2937; 
+    color: var(--color-dark); 
     margin-bottom: 1rem;
 }
 
@@ -797,24 +980,35 @@ body {
 }
 
 .footer-link {
-    color: #4B5563; 
+    color: var(--color-text); 
     text-decoration: none;
     transition: color 0.2s;
 }
 
-.footer-link:hover {
-    color: #8BC34A; 
-}
-
 .footer-contact-item {
     font-size: 0.95rem;
-    color: #4B5563; 
+    color: var(--color-text); 
     margin-bottom: 0.5rem;
 }
-.footer-address {
+.footer-contact-item strong {
+    display: block;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.2rem;
+}
+
+.footer-social-links {
     margin-top: 1rem;
-    color: #6B7280; 
-    font-size: 0.9rem;
+    display: flex;
+    gap: 1rem;
+}
+.social-icon-link {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+.social-icon-link:hover {
+    color: var(--color-primary);
 }
 
 .footer-copyright-bar {
@@ -827,23 +1021,32 @@ body {
     color: #9CA3AF; 
 }
 
+.footer-cnpj-info {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+
 /* --- RESPONSIVIDADE DO FOOTER --- */
 @media (max-width: 768px) {
     .footer-content-wrapper {
         grid-template-columns: 1fr; 
-        text-align: center; 
-        gap: 2rem;
+        gap: 3rem;
     }
-    
-    .footer-heading {
-        margin-top: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-    .footer-logo-col {
+    .footer-logo-col, 
+    .footer-links-col,
+    .footer-contact-col {
         text-align: center;
     }
+    .footer-social-links {
+        justify-content: center;
+    }
+    
     .footer-links-list {
-        display: inline-block; 
-        text-align: left;
+        display: block; 
+        text-align: center;
+    }
+    .footer-contact-item strong {
+        display: inline; 
     }
 }

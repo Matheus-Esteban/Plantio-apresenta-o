@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Componente auxiliar para aplicar a classe de destaque verde
+// Mantido - Ótima prática!
 const Highlight = ({ children }) => (
   <span className="about-highlight">{children}</span>
 );
@@ -10,39 +11,42 @@ const AboutUs = () => {
     <section id="about" className="about-section">
       <div className="about-content">
         
-        {/* Título Principal (Mantido) */}
-        <h2 className="section-title">Revolucione a Gestão Rural com Dados</h2>
+        {/* Título Principal APRIMORADO: Mais focado no DESAFIO e na VISÃO */}
+        <h2 className="section-title">Da Intuição ao Lucro: A Revolução da Gestão Rural Inteligente</h2>
         
         <div className="about-columns">
           
           <div className="about-card solution-card">
-            <h3 className="card-title">Nossa Solução Unificada</h3>
+            {/* Título da Coluna APRIMORADO: Mais forte e focado na ação */}
+            <h3 className="card-title">Sua Propriedade, Seus Dados, Seu 360°</h3>
             
-            {/* Texto Melhorado: Mais direto e focado no valor 360° */}
+            {/* Texto APRIMORADO: Mais orientado ao VALOR e ao problema resolvido */}
             <p className="card-text">
-              A Plant.io é a única plataforma que você precisa. Unificamos <Highlight>monitoramento climático</Highlight>, <Highlight>gestão de tarefas</Highlight> e <Highlight>controle de ativos</Highlight>, oferecendo uma visão completa de <Highlight>360°</Highlight> de sua propriedade. Nosso foco é maximizar o Retorno Sobre Investimento (<Highlight>ROI</Highlight>) da sua operação.
+              Chega de planilhas e suposições. A Plant.io é a **Plataforma de Inteligência** que integra e analisa todos os dados da sua operação em <Highlight>tempo real</Highlight>. Oferecemos a única visão de <Highlight>360°</Highlight> que unifica <Highlight>Monitoramento Climático Preditivo</Highlight>, <Highlight>Gestão Logística de Tarefas</Highlight> e <Highlight>Controle Patrimonial</Highlight> para otimizar o seu <Highlight>Retorno Sobre Investimento (ROI)</Highlight>.
             </p>
             
             <ul className="feature-list">
-              <li>Monitoramento Climático Detalhado</li>
-              <li>Gestão Completa de Tarefas e Colheitas</li>
-              <li>Controle de Depreciação de Ativos</li>
+              {/* Lista Aprimorada: Mais detalhada e com foco no benefício */}
+              <li><strong className="list-emphasis">Previsão e Ação:</strong> Monitoramento Climático e de Solo Detalhado.</li>
+              <li><strong className="list-emphasis">Otimização Logística:</strong> Gestão de Equipes, Insumos e Colheitas.</li>
+              <li><strong className="list-emphasis">Saúde Financeira:</strong> Controle Preciso de Ativos e Depreciação.</li>
             </ul>
           </div>
           
           <div className="about-card differential-card">
-            <h3 className="card-title">Nosso Diferencial Competitivo</h3>
+            {/* Título da Coluna APRIMORADO: Foco no Resultado Único */}
+            <h3 className="card-title">Nosso Diferencial: Monetizando a Sustentabilidade</h3>
             
-            {/* Texto Melhorado: Clareza sobre insights e lucratividade */}
+            {/* Texto APRIMORADO: Mais enfático no "ir além" e no insight */}
             <p className="card-text">
-              Vamos além do gerenciamento básico. Utilizamos <Highlight>dados coletados</Highlight> para gerar <Highlight>insights exclusivos</Highlight>, aumentando drasticamente a <Highlight>eficiência</Highlight> e a <Highlight>lucratividade</Highlight> da sua produção. E mais: abrimos uma nova fronteira inédita de monetização no Agrotech:
+              Não somos apenas um software de gestão. Somos uma **máquina de insights**. Transformamos <Highlight>dados brutos de campo</Highlight> em <Highlight>decisões estratégicas</Highlight> que elevam a sua **eficiência operacional** a níveis inéditos. Mas a verdadeira revolução está aqui:
             </p>
             
-            {/* Destaque de Crédito de Carbono (Mantido) */}
-            <div className="highlight-box">
-              <h4 className="highlight-title">Creditação de Carbono</h4>
+            {/* Destaque de Crédito de Carbono APRIMORADO: Mais direto e com foco no status de pioneiro */}
+            <div className="highlight-box carbon-highlight">
+              <h4 className="highlight-title">Créditos de Carbono: Novo Fluxo de Caixa</h4>
               <p className="highlight-text">
-                Oferecemos suporte completo na <Highlight>certificação de créditos de carbono</Highlight> de sua propriedade, transformando práticas sustentáveis em um <Highlight>novo fluxo de receita</Highlight> inédito na nossa região.
+                Somos pioneiros em transformar suas **práticas sustentáveis** em <Highlight>Capital</Highlight>. Oferecemos a <Highlight>certificação completa</Highlight> de créditos de carbono, abrindo um **novo e inédito fluxo de receita** para sua propriedade no Agrotech regional. Sua gestão responsável agora gera <Highlight>lucro adicional</Highlight>.
               </p>
             </div>
           </div>

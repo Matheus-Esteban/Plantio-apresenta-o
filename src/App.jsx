@@ -1,33 +1,22 @@
 // src/App.jsx
-
+import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './pages/Home';         
-// Certifique-se de que não há importações de .css ou logos antigos
+import Home from './pages/Home';
+import './index.css'; // Importa os estilos globais
 
-function App() {
+const App = () => {
   return (
-    // Remova as classes Tailwind: min-h-screen flex flex-col
-    <div className="app-container"> 
+    <div className="app-container">
       <Header />
-      <main className="main-content">
-        <Home /> 
-      </main>
+      
+      <div className="main-content">
+        <Home />
+      </div>
+      
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
-
-// Agora, crie os estilos correspondentes em src/index.css:
-/*
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.main-content {
-  flex-grow: 1;
-}
-*/

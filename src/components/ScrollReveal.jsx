@@ -1,29 +1,62 @@
-// src/components/ScrollReveal.jsx (O CORRETO)
+// src/components/ScrollReveal.jsx
+
 import React, { useRef, useEffect, useState } from 'react';
 
-const ScrollReveal = ({ children }) => {
+// Aprimoramento: Adiciona props para customização
+const ScrollReveal = ({ 
+  children, 
+  threshold = 0.1, // Permite definir a porcentagem de visibilidade
+  delay = 0,       // Permite adicionar um atraso na animação (útil para listas)
+  className = '',  // Permite adicionar classes externas de estilo
+  once = true,     // Define se a animação deve acontecer apenas uma vez
+}) => {
+  
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      // Se o elemento estiver visível (ou pelo menos 10% dele)
-      if (entries[0].isIntersecting) {
-        setIsVisible(true);
-        // Não precisa mais observar
-        observer.unobserve(domRef.current); 
+  // Função centralizada para lidar com a visibilidade
+  const handleIntersection = (entries, observer) => {
+    // Se o elemento estiver visível
+    if (entries[0].isIntersecting) {
+      setIsVisible(true);
+      
+      // Se a animação deve ocorrer apenas UMA VEZ, para de observar
+      if (once) {
+        observer.unobserve(domRef.current);
       }
-    }, { threshold: 0.1 }); 
+    } else if (!once) {
+      // Se não for 'once', permite que a animação seja revertida quando o elemento sai
+      setIsVisible(false);
+    }
+  };
 
-    observer.observe(domRef.current);
+  useEffect(() => {
+    // Usa o 'threshold' customizado
+    const observer = new IntersectionObserver(handleIntersection, { 
+      threshold: threshold 
+    }); 
 
-    return () => observer.disconnect(); // Limpeza
-  }, []);
+    const currentElement = domRef.current;
+    
+    if (currentElement) {
+        observer.observe(currentElement);
+    }
+
+    return () => {
+      // Garante que o observador seja desconectado na desmontagem
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+      observer.disconnect();
+    };
+  }, [threshold, once]); // Adiciona dependências para o useEffect
 
   return (
     <div 
-      className={`scroll-reveal-container ${isVisible ? 'is-visible' : ''}`} 
+      className={`scroll-reveal-container ${className} ${isVisible ? 'is-visible' : ''}`} 
       ref={domRef}
+      // Adiciona estilo inline para o delay da animação
+      style={{ transitionDelay: `${delay}ms` }} 
     >
       {children}
     </div>

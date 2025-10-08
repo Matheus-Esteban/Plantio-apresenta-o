@@ -1,13 +1,17 @@
 // src/components/TransitionSeparator.jsx
 
 import React from 'react';
-// A importação de UvaImage não é mais necessária, pois o CSS carregará a imagem da pasta public/.
 
 const TransitionSeparator = () => {
   return (
-    <div className="transition-separator">
-      {/* VAZIO. O padrão repetível de uvas é o background CSS. */}
-      &nbsp; {/* Um espaço em branco opcional para garantir a renderização da div. */}
+    <div 
+      className="transition-separator"
+      // 1. Acessibilidade: Indica que o elemento é decorativo e deve ser ignorado por leitores de tela.
+      role="presentation" 
+      // 2. Semântica (opcional): Adiciona um título descritivo para o desenvolvedor.
+      title="Separador visual de seção" 
+    >
+      {/* 3. Remoção do &nbsp;: Melhor manter o conteúdo vazio e controlar a altura via CSS. */}
     </div>
   );
 };
