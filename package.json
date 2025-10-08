@@ -1,6 +1,6 @@
 {
   "name": "plant-io",
-  "homepage": "https://Matheus-Esteban.github.io/Plantio-SiteApresenta-o/", 
+  "homepage": "https://Matheus-Esteban.github.io/Plantio-apresenta-o",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

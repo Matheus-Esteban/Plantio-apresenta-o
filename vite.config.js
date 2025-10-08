@@ -6,6 +6,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // IMPORTANTE: O caminho base deve ser o nome do repositório
-  base: "/Plantio-SiteApresenta-o/" 
+  // CORREÇÃO CRÍTICA: Base URL do repositório
+  base: "/Plantio-apresenta-o/" 
 })
